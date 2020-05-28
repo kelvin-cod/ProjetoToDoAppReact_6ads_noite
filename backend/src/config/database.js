@@ -1,19 +1,7 @@
-const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose')
+mongoose.Promise = global.Promise
 
-const uri = "mongodb+srv://quebramedos:81286817@cluster0-vtoix.gcp.mongodb.net/test?retryWrites=true&w=majority";
-
-const client = new MongoClient(uri, {
+module.exports = mongoose.connect('mongodb+srv://quebramedos:81286817@cluster0-vtoix.gcp.mongodb.net/test?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
-});
-
-client.connect(err => {
-  try {
-    const collection = client.db("admin").collection("todolist");
-  } catch (error) {
-    console.log(error)
-  }
-  console.log(err)
-  // perform actions on the collection object
-  client.close();
-});
+})
